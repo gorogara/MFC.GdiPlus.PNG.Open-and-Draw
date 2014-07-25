@@ -67,8 +67,11 @@ void COpenPNGView::OnDraw(CDC* pDC)
 	// 이미지 로드
 	Image* png = Image::FromFile(L"..\\image\\mario.png");
 
-	// 이미지 로드를 실패하면 nullptr을 반환
-	if (png)
+	// 이미지의 마지막 상태를 가져온다.
+	Status status = png->GetLastStatus();
+
+	// 이미지의 마지막 상태가 Ok일 때만 이미지를 출력한다.
+	if (status == Status::Ok)
 	{
 		// 0, 0에 이미지의 좌상단을 위치하여 출력
 		graphics.DrawImage(png, 0, 0);
